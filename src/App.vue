@@ -1,17 +1,27 @@
 <template>
-  <h1> {{ getTitle() }}</h1>
-  <input :type="inputType()"/>
+  <div>
+    <h1>My App</h1>
+    <h1> {{ user.age }}</h1>
+  </div>
 </template>
 
 <script setup lang="ts">
 
-const inputType = () => {
-  return 'number'
-};
+interface User {
+  name: string;
+  age: number;
+}
 
-const getTitle = () => {
-  return 'Hello World'
-};
+let user: User;
+
+const createUser = (name: string): User => {
+  return {
+    name,
+    age: 24
+  }
+}
+
+user = createUser('zakaria');
 
 </script>
 
