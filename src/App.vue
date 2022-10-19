@@ -1,27 +1,26 @@
 <template>
-  <div>
-    <h1>My App</h1>
-    <h1> {{ user.age }}</h1>
-  </div>
+  <h1 @click="mgs" >Hello Monde</h1>()
+  <input type="text" @input="count++" />
 </template>
 
 <script setup lang="ts">
 
-interface User {
-  name: string;
-  age: number;
+let count = 0;
+
+const mgs = (event: MouseEvent) => {
+  console.log('Hello World', event)
 }
 
-let user: User;
-
-const createUser = (name: string): User => {
-  return {
-    name,
-    age: 24
-  }
+const userEnter = () => {
+  console.log('User Enter')
 }
 
-user = createUser('zakaria');
+const userInput = (event: Event, test: string) => {
+  const target = event.target as HTMLInputElement;
+  target.value = 'zakaria'
+
+  console.log(test)
+}
 
 </script>
 
