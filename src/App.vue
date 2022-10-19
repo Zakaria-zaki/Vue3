@@ -1,9 +1,21 @@
 <template>
-  <h1>Bojour {{ name }}</h1>
+  <form @submit.prevent="submit()">
+  <button>Submit</button>
+  </form>
+
+  <input @keyup.enter="mykeyup()"/>
 </template>
 
 <script setup lang="ts">
-const name = "zakaria";
+
+const submit = () => {
+  console.log('submit')
+}
+
+const mykeyup = () => {
+  console.log('mykeyup')
+}
+
 </script>
 
 <style></style>
