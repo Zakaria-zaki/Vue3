@@ -1,4 +1,5 @@
 <template>
+    <input type="number" v-model="product.quantity" />
     <h2>Prix HT: {{ prixHT }}</h2>
     <h2>Prix TTC: {{ prixTTC }}</h2>
 </template>
