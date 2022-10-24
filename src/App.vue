@@ -1,29 +1,26 @@
 <template>
-    <h1> Hello {{ user.name  }}</h1>
-    <h2> Count: {{ state.count }} </h2>
+    <h2> Count: {{ count }} </h2>
+    <h2> Count for Ref: {{ countRef }} </h2>
     <button @click="add">Add</button>
 </template>
 
 <script setup lang="ts">
-import { nextTick, reactive } from 'vue';
+import { ref } from 'vue';
+import type { Ref } from 'vue';
 
-const state  = reactive({
-    user: {
-        name: 'zakaria',
-        age: 25
-    },
-    count: 0
-})
+const count = ref(0);
 
-let { user } = state
+const countRef = ref(0);
 
 const add = () => {
-    user.name = user.name === 'zakaria' ? 'Salim' : 'zakaria' 
-    state.count++;
-    nextTick(() => {
-        console.log('tick');
-    })
+    count.value++;
 }
+
+const getRef = (num: Ref<number>) => {
+    num.value++;
+}
+
+getRef(countRef);
 
 
 </script>
