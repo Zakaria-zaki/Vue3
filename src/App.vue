@@ -5,18 +5,24 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive } from 'vue';
+import { computed, reactive, watch } from 'vue';
 
 
 const product = reactive({
     name: 'Book',
     quantity: 3,
-    priceHT: 10
+    priceHT: 10,
+    nbOfModification: 0
 });
 
 const prixHT = computed(() => product.priceHT * product.quantity)
-
 const prixTTC = computed(() => product.priceHT * product.quantity * 1.2 )
+
+const unwatch = watch(() => product.quantity, (new1, old) => {
+    product.nbOfModification++;
+    console.log(new1);
+    console.log(old);
+})
 
 </script>
 
