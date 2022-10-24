@@ -1,27 +1,21 @@
 <template>
-    <h2> Count: {{ count }} </h2>
-    <h2> Count for Ref: {{ countRef }} </h2>
-    <button @click="add">Add</button>
+    <h2>Prix HT: {{ prixHT }}</h2>
+    <h2>Prix TTC: {{ prixTTC }}</h2>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import type { Ref } from 'vue';
+import { computed, reactive } from 'vue';
 
-const count = ref(0);
 
-const countRef = ref(0);
+const product = reactive({
+    name: 'Book',
+    quantity: 3,
+    priceHT: 10
+});
 
-const add = () => {
-    count.value++;
-}
+const prixHT = computed(() => product.priceHT * product.quantity)
 
-const getRef = (num: Ref<number>) => {
-    num.value++;
-}
-
-getRef(countRef);
-
+const prixTTC = computed(() => product.priceHT * product.quantity * 1.2 )
 
 </script>
 
