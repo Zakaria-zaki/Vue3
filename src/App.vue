@@ -5,14 +5,21 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, watch } from 'vue';
+import { computed, reactive, watch, watchEffect } from 'vue';
 
+interface Product {
+    name: string,
+    quantity: number,
+    priceHT: number,
+    nbOfModification: number,
+    dateOfMod?: number 
+}
 
-const product = reactive({
+const product = reactive<Product>({
     name: 'Book',
     quantity: 3,
     priceHT: 10,
-    nbOfModification: 0
+    nbOfModification: 0,
 });
 
 const prixHT = computed(() => product.priceHT * product.quantity)
@@ -22,6 +29,10 @@ const unwatch = watch(() => product.quantity, (new1, old) => {
     product.nbOfModification++;
     console.log(new1);
     console.log(old);
+})
+
+watchEffect(() => {
+    product.dateOfMod = Date.now()
 })
 
 </script>
