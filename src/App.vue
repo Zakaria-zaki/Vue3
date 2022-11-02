@@ -1,14 +1,25 @@
 <template>
-    <input v-model="toggle" type="text"/>
-    <h1 v-show="toggle"> Hellooo</h1>
+    <ul>
+        <li v-for="(fruit, index) in fruits">{{ fruit }} : {{ index }}</li>
+    </ul>
+    <ul>
+        <li v-for="({ name }, index) in users">{{ name }} : {{ index }}</li>
+    </ul>
 
-    <h2 v-pre> {{ toogle }}</h2>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { reactive } from 'vue';
 
-const toggle = ref('')
+
+const fruits = reactive([ 'fraises', 'pommes', 'kiwis', 'bananes' ]);
+const users = reactive([
+    { name: 'zakaria' },
+    { name: 'hocine' },
+    { name: 'test' },
+    { name: 'test 2' },
+]);
+
 </script>
 
 <style scoped lang="scss"
