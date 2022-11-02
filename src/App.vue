@@ -1,41 +1,30 @@
 <template>
-    <input type="number" v-model="product.quantity" />
-    <h2>Prix HT: {{ prixHT }}</h2>
-    <h2>Prix TTC: {{ prixTTC }}</h2>
+    <div v-if="state.user">
+        <h1>Profile:</h1>
+        <ul>
+            <li>Name: {{ state.user.name }}</li>
+            <li>Age: {{ state.user.age }}</li>
+        </ul>
+    </div>
+    <div v-else>
+        <h1>Chargement ...</h1>
+    </div>
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, watch, watchEffect } from 'vue';
+import { reactive } from 'vue';
 
-interface Product {
-    name: string,
-    quantity: number,
-    priceHT: number,
-    nbOfModification: number,
-    dateOfMod?: number 
-}
+const state = reactive<any>({})
 
-const product = reactive<Product>({
-    name: 'Book',
-    quantity: 3,
-    priceHT: 10,
-    nbOfModification: 0,
-});
-
-const prixHT = computed(() => product.priceHT * product.quantity)
-const prixTTC = computed(() => product.priceHT * product.quantity * 1.2 )
-
-const unwatch = watch(() => product.quantity, (new1, old) => {
-    product.nbOfModification++;
-    console.log(new1);
-    console.log(old);
-})
-
-watchEffect(() => {
-    product.dateOfMod = Date.now()
-})
+setTimeout(() => {
+    state.user = {
+        name: 'zakaria',
+        age: 24
+    }
+}, 2000)
 
 </script>
 
-<style></style>
+<style scoped lang="scss"
+></style>
  
