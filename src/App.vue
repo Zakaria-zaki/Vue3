@@ -1,25 +1,22 @@
 <template>
-    <ul>
-        <li v-for="(fruit, index) in fruits">{{ fruit }} : {{ index }}</li>
-    </ul>
-    <ul>
-        <li v-for="({ name }, index) in users">{{ name }} : {{ index }}</li>
-    </ul>
+    <h1> {{ seconds }}</h1>
+    <h1> {{ totalIdelTime }}</h1>
 
+    <h2 v-if="isloading"> LOADING ... </h2>
+    <ul v-for="todo in todos">
+        <ul v-for="i in todo">
+            <li> {{ i }} </li>
+        </ul>
+    </ul>
+    <div> {{ errors }} </div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { getIdelTime } from './total-idel-time';
+import { useFetchTodo } from './user.service';
 
-
-const fruits = reactive([ 'fraises', 'pommes', 'kiwis', 'bananes' ]);
-const users = reactive([
-    { name: 'zakaria' },
-    { name: 'hocine' },
-    { name: 'test' },
-    { name: 'test 2' },
-]);
-
+const {seconds, totalIdelTime} = getIdelTime();
+const {todos, isloading, errors  } = useFetchTodo();
 </script>
 
 <style scoped lang="scss"
